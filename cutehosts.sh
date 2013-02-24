@@ -36,6 +36,17 @@ test -f $raw.ipv6 && cat $raw.ipv6 | while read line; do
 
 done
 
-cat $raw.ipv4.list | sort -n | head -n 1
-cat $raw.ipv6.list | sort -n | head -n 1
+echo "quickest server for $raw:"
+cat $raw.ipv4.list | sort -n | head -n 1 | tee $raw.choice.tmp
+cat $raw.ipv6.list | sort -n | head -n 1 | tee -a $raw.choice.tmp
 
+echo "records:"
+>$raw.choice
+cat $raw.choice.tmp | cut -d " " -f 2 | while read lines; do
+	printf "address=/%s/%s\n" $raw $lines | tee -a $raw.choice
+done
+
+rm $raw
+rm $raw.ipv4 $raw.ipv6
+rm $raw.ipv4.list $raw.ipv6.list
+rm $raw.choice.tmp
