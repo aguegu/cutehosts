@@ -4,7 +4,7 @@ raw=${1:-"google.com"}
 
 >$raw
 
-curl -s "http://just-ping.com/index.php?vh=$raw&s=ping%21" | grep "^xmlreqGET" | egrep -o "[^,]+," | sed "s%xmlreqGET('%http://just-ping.com/%" | tr -d "'," | while read line; do 
+curl -s "http://just-ping.com/index.php?vh=$raw&s=ping%21" | egrep -o "^xmlreqGET\('[^']+" | sed "s%xmlreqGET('%http://just-ping.com/%" | while read line; do 
 	curl -m 10 -w "\n" -s $line >> $raw &
 done;
 sleep 12
@@ -27,7 +27,7 @@ done
 >$raw.ipv6.list
 test -f $raw.ipv6 && cat $raw.ipv6 | while read line; do
 	
-	result=$(ping6 -c 8 -W 1 $line)
+	result=$(ping6 -c 8 -W 3 $line)
 
 	if [ $? -eq 0 ]; then
 		rrt=$(echo $result  | sed "s%/%\n%g" | tail -n 2 | head -n 1)
@@ -46,7 +46,7 @@ cat $raw.choice.tmp | cut -d " " -f 2 | while read lines; do
 	printf "address=/%s/%s\n" $raw $lines | tee -a $raw.choice
 done
 
-rm $raw
+#rm $raw
 rm $raw.ipv4 $raw.ipv6
 rm $raw.ipv4.list $raw.ipv6.list
 rm $raw.choice.tmp

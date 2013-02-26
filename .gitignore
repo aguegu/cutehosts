@@ -3,3 +3,5 @@
 *.ipv*
 *.list
 *.choice
+
+raw/
