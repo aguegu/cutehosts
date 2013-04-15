@@ -1,0 +1,45 @@
+# Google DNS
+8.8.8.8
+8.8.4.4
+
+4.2.2.1
+4.2.2.2
+4.2.2.3
+4.2.2.4
+4.2.2.5
+4.2.2.6
+
+# 114 DNS
+114.114.114.114
+114.114.115.115
+114.114.114.119
+114.114.115.119 
+114.114.114.110
+114.114.115.110
+
+# OpenDNS: https://www.opendns.com/
+208.67.222.222
+208.67.220.220
+ 
+# Norton dns: https://dns.norton.com
+# A - Security (malware, phishing sites and scam sites)
+198.153.192.40
+198.153.194.40
+# B - Security + Pornography
+198.153.192.50
+198.153.194.50
+# C - Security + Pornography + Non-Family Friendly
+198.153.192.60
+198.153.194.60
+
+# comodo dns: http://www.comodo.com/
+8.26.56.26
+8.20.247.20
+ 
+#fztt:
+222.47.29.93
+222.47.62.142
+
+#fzdx
+218.85.157.99
+218.85.152.99
